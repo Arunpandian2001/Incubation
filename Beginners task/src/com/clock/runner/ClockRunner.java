@@ -1,11 +1,14 @@
 package com.clock.runner;
 
+import java.text.ParseException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import com.clock.method.ClockMethod;
 import com.util.getvalues.GetString;
 import com.util.getvalues.IntegerMethod;
+
+import createdexception.CreatedException;
 public class ClockRunner {
 	
 	public static void main(String[] args) {
@@ -14,59 +17,69 @@ public class ClockRunner {
 		IntegerMethod getInt=new IntegerMethod();
 		ClockMethod method=new ClockMethod();
 		Scanner input=new Scanner(System.in);
-;
+		Logger logger=Logger.getLogger(ClockMethod.class.getName());
+
 		boolean value=true;
 		
 		while(value) {
-			System.out.println("Enter the choice");
+			logger.log(Level.INFO, "Enter the choice");
 			int choice=getInt.isInteger(input);
 
 			switch(choice) {
 			
 				case 1:{
-					
-					System.out.println(method.getLocalTime());
+					logger.log(Level.INFO, method.getLocalTime());
+
 					System.out.println();
 					break;
 				}
 				
 				case 2:{
-					System.out.println(method.getPresentLocalTimeInMilli());
+					
+					logger.log(Level.INFO, Long.toString(method.getPresentLocalTimeInMilli()));
+
+					System.out.println();
 					System.out.println();
 					break;
 				}
 				
 				case 3:{
 						
-						System.out.println("Enter the number of timezones needed::");
-						//Logger logger=new Logger.getLogger(ClockMethod.class.getName());
+						logger.info("Enter the number of timezones needed::");
 						
 						int limit=getInt.isInteger(input);
 						
 						String[] continents=new String[limit];
 						String[] places=new String[limit];
-						String [] timeZone=new String[limit];
-						//ZoneId [] zones=new ZoneId[limit];
+						String[] timeZone=new String[limit];
 						
-						for(int i=0;i<limit;i++) {
-							System.out.println("Enter the continent::");
-							continents[i]=inputString.getString(input);
-							
-							System.out.println("Enter the zone::");					
-							places[i]=inputString.getString(input);
-							
-							timeZone[i]=method.getCombinedString(continents[i],places[i]);
-							
-							/*try {
-								zones[i]=method.getZoneId(timeZone[i]);
+						try {
+							for(int i=0;i<limit;i++) {
+								logger.log(Level.INFO, "Enter the continent::");
 
-							}catch(Exception e) {
-								System.out.println(e);
-							}*/
+								continents[i]=inputString.getString(input);
+								method.checkCase(continents[i]);
+								
+								logger.log(Level.INFO, "Enter the zone::");
+
+								places[i]=inputString.getString(input);
+								method.checkCase(places[i]);
+								
+								timeZone[i]=method.getCombinedString(continents[i],places[i]);
+								method.checkZone(timeZone[i]);
+
+							}
 						}
+						
+						catch(CreatedException e) {
+							logger.log(Level.SEVERE,"Exception occured", e);
+							break;
+						}
+						
+						
 						String [] resultTimes=method.getDifferentTimeZones(limit, timeZone);
 						for(int i=0;i<limit;i++) {
-							System.out.println("The time in TimeZone "+timeZone[i]+" is "+resultTimes[i]);
+							logger.log(Level.INFO, "The time in TimeZone "+timeZone[i]+" is "+resultTimes[i]);
 						}
 						System.out.println();
 						break;
@@ -74,19 +87,75 @@ public class ClockRunner {
 				}
 				
 				case 4:{
-					System.out.println("Enter the time in hh:mm:ss format::");
-					String time=inputString.getString(input);
-					System.out.println("Enter the date in dd/mm/yyyy format ::");
+					
+					logger.log(Level.INFO, "Enter the date in yyyy/mm/dd format ::");
+
 					String date=inputString.getString(input);
-					String abc=method.getTime(time,date);
+					String day="";
+					try {
+						 day=method.getWeekDay(date);
+
+					}catch(ParseException e) {
+						logger.log(Level.SEVERE, "Enter the input with / between date values");
+
+					}
+					logger.log(Level.INFO, "The day is :"+day);
+
+					System.out.println();
 					break;
 				}
 				
+				case 5:{
+					logger.log(Level.INFO, "Enter the date in yyyy/mm/dd format ::");
+
+					String date=inputString.getString(input);
+					String month="";
+					
+					try {
+						month=method.getMonthString(date);
+					} catch (ParseException e) {
+						logger.log(Level.SEVERE, "Enter the input with / between date values");
+					}
+					logger.log(Level.INFO, "The month is :"+month);
+
+					System.out.println();
+					break;
+
+				}
+				
+				case 6:{
+					logger.log(Level.INFO, "Enter the date in yyyy/mm/dd format ::");
+
+					String date=inputString.getString(input);
+					String year="";
+					
+					try {
+						year=method.getYearString(date);
+					} catch (ParseException e) {
+						logger.log(Level.SEVERE, "Enter the input with / between date values");
+					}
+					logger.log(Level.INFO, "The year is :"+year);
+
+					System.out.println();
+					break;
+
+				}
+				
+				
+				
 				case 7:{
 					value=false;
-					//System.out.println("The process is end");
+					logger.log(Level.INFO, "The process is end");
+
+					System.out.println();
 					break;
 				}
+				
+				default:{
+					logger.log(Level.WARNING, "Enter proper input");
+
+				}
+				
 			}
 		}
 		input.close();

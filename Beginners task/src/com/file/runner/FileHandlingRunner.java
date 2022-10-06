@@ -1,6 +1,5 @@
 package com.file.runner;
 
-import java.io.File;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -23,6 +22,7 @@ public class FileHandlingRunner {
 		ReadProperties read=new ReadProperties();
 		MakeDirectory mkdir=new MakeDirectory();
 		System.out.println("Enter the choice");
+		
 		int choice=getInteger.isInteger(input);
 		switch(choice) {
 			case 1:{
@@ -65,12 +65,8 @@ public class FileHandlingRunner {
 				break;
 			}
 			
-			case 5:{
-				try {
-					
-				}catch(Exception e) {
-					
-				}
+			default:{
+				System.out.println("Enter valid input");
 				break;
 			}
 			

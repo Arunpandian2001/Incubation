@@ -72,7 +72,7 @@ public class RegexMethod {
 	public boolean isEmailValid(String matcherString) throws CreatedException {
 		isNull.nullCheck(matcherString);
 		
-		return Pattern.compile("^[^.](.+)@.(.+)[^.@]$").matcher(matcherString).find();
+		return Pattern.compile("^[^.](.+)@[^.]{1}(.+)[^.@]$").matcher(matcherString).find();
 	}
 	
 	public boolean isLengthValid(List<String> list,String matcherString) throws CreatedException {
@@ -95,13 +95,22 @@ public class RegexMethod {
 			}
 		}
 		return map;
+		
+		
+		
 	}
 	
-	public List<String> getHTMLTags(String htmlString,List<String> tagList) throws CreatedException{
+	public List<String>  getHTMLTags(String htmlString,List<String> tagList) throws CreatedException{
 		isNull.nullCheck(htmlString);
 		isNull.nullCheck(tagList);
 		
-		//incomplete
+		Pattern pattern=Pattern.compile("</*[a-zA-Z]*>");
+		
+		Matcher match=pattern.matcher(htmlString);
+		
+		while(match.find()) {
+			tagList.add(match.group());
+		}
 		
 		return tagList;
 	}

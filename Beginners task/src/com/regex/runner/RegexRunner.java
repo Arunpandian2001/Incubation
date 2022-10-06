@@ -213,9 +213,9 @@ public class RegexRunner {
 				}
 				
 				case 8:{
-					System.out.println("Enter the html tag");
-					input.nextLine();
-					String htmlString=multipleString.getMultipleString(input);
+					
+					String htmlString="<p>The <code>President</code> of India is the first\r\n"
+							+ "citizen of our country.</p>";
 					List<String> tagList=listMethod.getArrayList("");
 					
 					try {
@@ -223,7 +223,7 @@ public class RegexRunner {
 					}catch(CreatedException e) {
 						System.out.println(e);
 					}
-					System.out.println("The list is "+tagList);
+					System.out.println("The list of tag present in <> is "+tagList);
 					System.out.println("\n\n");
 					break;
 				}

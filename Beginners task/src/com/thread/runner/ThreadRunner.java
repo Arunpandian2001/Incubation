@@ -2,9 +2,11 @@ package com.thread.runner;
 
 import java.util.Scanner;
 
-import com.thread.method.ExtendedThread;
-import com.thread.method.RunnableThread;
+import com.thread.method.extendedthread.*;
+import com.thread.method.runnablethread.*;
 import com.util.getvalues.*;
+
+import createdexception.CreatedException;
 public class ThreadRunner {
 
 	public static void main(String[] args)  {
@@ -14,13 +16,16 @@ public class ThreadRunner {
 		GetString stringInput=new GetString();
 		LongMethod getLong=new LongMethod();
 		StringArray stringArrInput =new StringArray();
+
+		
 		int choice=getInt.isInteger(input);
 		switch(choice) {
 			case 1:{
+				
 				try {
 					System.out.println("Enter the name for thread ::");
 					String name=stringInput.getString(input);
-					ExtendedThread ex=new ExtendedThread(name);
+					ExtendedThread1 ex=new ExtendedThread1(name);
 					System.out.println("Before thread");
 					System.out.println(ex.getName());
 					System.out.println(ex.getPriority());
@@ -28,6 +33,7 @@ public class ThreadRunner {
 					System.out.println("\n\n");
 					ex.start();
 					ex.join();
+					
 				}catch(Exception e) {
 					System.out.println(e);
 				}
@@ -37,17 +43,14 @@ public class ThreadRunner {
 			case 2:{
 					
 				try {
-					/*System.out.println("Enter the name for thread ::");
-					String name=stringInput.getString(input);*/
-					RunnableThread run=new RunnableThread();
+					
+					RunnableThread1 run=new RunnableThread1();
 					Thread t1=new Thread(run);
 					System.out.println("Before thread");
-					System.out.println(run.getThreadName());
-					//System.out.println(t1.getName());
-					System.out.println(run.getGetThreadPriority());
-					System.out.println(run.getGetThreadState());
+					System.out.println(t1.getName());
+					System.out.println(t1.getPriority());
+					System.out.println(t1.getState());
 					System.out.println("\n\n");
-					//RunnableThread run1=new RunnableThread(name);
 					t1.start();
 				}catch(Exception e) {
 					System.out.println(e);
@@ -58,7 +61,7 @@ public class ThreadRunner {
 			
 			case 3:{
 				try {
-					ExtendedThread ex=new ExtendedThread("ExtendedThread");
+					ExtendedThread2 ex=new ExtendedThread2("ExtendedThread");
 
 					System.out.println("Before Extended thread");
 					System.out.println(ex.getName());
@@ -70,14 +73,13 @@ public class ThreadRunner {
 					ex.join();
 					
 					System.out.println("\n\n");
-					RunnableThread run=new RunnableThread();
+					RunnableThread2 run=new RunnableThread2("RunnableThread");
+					Thread t1=new Thread(run);
 					System.out.println("Before Runnable thread");
-					System.out.println(run.getThreadName());
-					System.out.println(run.getGetThreadPriority());
-					System.out.println(run.getGetThreadState());
+					System.out.println(t1.getName());
+					System.out.println(t1.getPriority());
+					System.out.println(t1.getState());
 					System.out.println("\n\n");
-					RunnableThread run1=new RunnableThread("RunnableThread");
-					Thread t1=new Thread(run1);
 					t1.start();
 					
 					
@@ -95,40 +97,27 @@ public class ThreadRunner {
 					System.out.println("Names of Runnable Class");
 					String runNames[]=stringArrInput.getStringArray(input);
 					
-					System.out.println("Enter the number of Extended threats to be created ::");
-					ExtendedThread[] extendedArray=new ExtendedThread[(getInt.isInteger(input))];
+					ExtendedThread3[] extendedArray=new ExtendedThread3[extNames.length];
 					
-					System.out.println("Enter the number of Runnable threats to be created ::");
-					RunnableThread[] runnableArray=new RunnableThread[(getInt.isInteger(input))];
-					
-					System.out.println("Enter the time to sleep for Extended Thread::");
-					long extendTime=getLong.isLong(input);
-					
-					
-					System.out.println("Enter the time to sleep for Runnable Thread::");
-					long runTime=getLong.isLong(input);
+					RunnableThread3[] runnableArray=new RunnableThread3[runNames.length];
 					
 					
 					int extNamesNum=extNames.length;
 					int runNamesNum=runNames.length;
-					int extendedArrayNum=extendedArray.length;
-					int runnableArrayNum=runnableArray.length;
-				
-					if(extendedArrayNum!=runnableArrayNum || extNamesNum != runNamesNum || extNamesNum!= runnableArrayNum) {
+					
+					if( extNamesNum != runNamesNum ) {
 						throw new Exception ("The no of inputs entered is unequal");
 					}
 					
-					for (int i = 0; i < extendedArrayNum; i++) {
-						ExtendedThread thread =new ExtendedThread(extNames[i]);
-						thread.setSleepDuration(extendTime);
+					for (int i = 0; i < extNamesNum; i++) {
+						ExtendedThread3 thread =new ExtendedThread3(extNames[i]);
 						extendedArray[i]=thread;
 						thread.start();
 					}
 					
 					
-					for (int j = 0; j < runnableArrayNum; j++) {
-						RunnableThread run =new RunnableThread(runNames[j]);
-						run.setSleepDuration(runTime);
+					for (int j = 0; j < extNamesNum; j++) {
+						RunnableThread3 run =new RunnableThread3(runNames[j]);
 						runnableArray[j]=run;
 						Thread t=new Thread(run);
 						t.start();
@@ -150,36 +139,31 @@ public class ThreadRunner {
 					System.out.println("Names of Runnable Class");
 					String runNames[]=stringArrInput.getStringArray(input);
 					
-					System.out.println("Enter the number of Extended threats to be created ::");
-					ExtendedThread[] extendedArray=new ExtendedThread[(getInt.isInteger(input))];
+					ExtendedThread4[] extendedArray=new ExtendedThread4[extNames.length];
 					
-					System.out.println("Enter the number of Runnable threats to be created ::");
-					RunnableThread[] runnableArray=new RunnableThread[(getInt.isInteger(input))];
-					
+					RunnableThread4[] runnableArray=new RunnableThread4[runNames.length];
+						
 					int extNamesNum=extNames.length;
 					int runNamesNum=runNames.length;
-					int extendedArrayNum=extendedArray.length;
-					int runnableArrayNum=runnableArray.length;
-				
-					if(extendedArrayNum!=runnableArrayNum || extNamesNum != runNamesNum || extNamesNum!= runnableArrayNum) {
+					
+					if( extNamesNum != runNamesNum ) {
 						throw new Exception ("The no of inputs entered is unequal");
 					}
 					
-					for (int i = 0; i < extendedArrayNum; i++) {
+					
+					for (int i = 0; i < extNamesNum; i++) {
+						
 						System.out.println("Enter the time to sleep for Extended Thread::");
-						long extendTime=getLong.isLong(input);
-						ExtendedThread thread =new ExtendedThread(extNames[i]);
-						thread.setSleepDuration(extendTime);
+						ExtendedThread4 thread =new ExtendedThread4(extNames[i],getLong.isLong(input));
 						extendedArray[i]=thread;
 						thread.start();
 					}
 					
 					
-					for (int j = 0; j < runnableArrayNum; j++) {
+					for (int j = 0; j < extNamesNum; j++) {
+						
 						System.out.println("Enter the time to sleep for Runnable Thread::");
-						long runTime=getLong.isLong(input);
-						RunnableThread run =new RunnableThread(runNames[j]);
-						run.setSleepDuration(runTime);
+						RunnableThread4 run =new RunnableThread4(runNames[j],getLong.isLong(input));
 						runnableArray[j]=run;
 						Thread t=new Thread(run);
 						t.start();
@@ -203,51 +187,41 @@ public class ThreadRunner {
 					String runNames[]=stringArrInput.getStringArray(input);
 					
 					System.out.println("Enter the number of Extended threats to be created ::");
-					ExtendedThread[] extendedArray=new ExtendedThread[(getInt.isInteger(input))];
+					ExtendedThread5[] extendedArray=new ExtendedThread5[(getInt.isInteger(input))];
 					
 					System.out.println("Enter the number of Runnable threats to be created ::");
-					RunnableThread[] runnableArray=new RunnableThread[(getInt.isInteger(input))];
+					RunnableThread5[] runnableArray=new RunnableThread5[(getInt.isInteger(input))];
 					
 					int extNamesNum=extNames.length;
 					int runNamesNum=runNames.length;
-					int extendedArrayNum=extendedArray.length;
-					int runnableArrayNum=runnableArray.length;
-				
-					if(extendedArrayNum!=runnableArrayNum || extNamesNum != runNamesNum || extNamesNum!= runnableArrayNum) {
+					
+					if( extNamesNum != runNamesNum ) {
 						throw new Exception ("The no of inputs entered is unequal");
 					}
-					
-					for (int i = 0; i < extendedArrayNum; i++) {
+					for (int i = 0; i < extNamesNum; i++) {
+
 						System.out.println("Enter the time to sleep for Extended Thread::");
-						long extendTime=getLong.isLong(input);
-						ExtendedThread thread =new ExtendedThread(extNames[i]);
-						thread.setSleepDuration(extendTime);
+						ExtendedThread5 thread =new ExtendedThread5(extNames[i],getLong.isLong(input));
 						extendedArray[i]=thread;
-						System.out.println("Enter the boolean value for extended thread ::");
-						boolean extValue=input.nextBoolean();
-						thread.setValue(extValue);
 						thread.start();
 						
 					}
 					
 					
-					for (int j = 0; j < runnableArrayNum; j++) {
+					for (int j = 0; j < extNamesNum; j++) {
 						System.out.println("Enter the time to sleep for Runnable Thread::");
-						long runTime=getLong.isLong(input);
-						RunnableThread run =new RunnableThread(runNames[j]);
-						run.setSleepDuration(runTime);
+						RunnableThread5 run =new RunnableThread5(runNames[j],getLong.isLong(input));
 						runnableArray[j]=run;
 						Thread t=new Thread(run);
-						System.out.println("Enter the boolean value for extended thread ::");
-						boolean runValue=input.nextBoolean();
-						run.setValue(runValue);
 						t.start();
 
 					}
+									
 					
 				}catch(Exception e) {
 					System.out.println(e);
 				}
+				
 				break;
 					
 
@@ -255,57 +229,53 @@ public class ThreadRunner {
 			
 			case 7:{
 				try {
-					System.out.println("Names of Extended Class");
+					System.out.println("Names of Extended Threads");
 					String extNames[]=stringArrInput.getStringArray(input);
 
-					System.out.println("Names of Runnable Class");
+					System.out.println("Names of Runnable Threads");
 					String runNames[]=stringArrInput.getStringArray(input);
 					
-					ExtendedThread[] extendedArray=new ExtendedThread[extNames.length];
+					ExtendedThread6[] extendedArray=new ExtendedThread6[extNames.length];
 					
-					System.out.println("Enter the number of Runnable threats to be created ::");
-					RunnableThread[] runnableArray=new RunnableThread[runNames.length];
+					RunnableThread6[] runnableArray=new RunnableThread6[runNames.length];
 					
+
 					int extNamesNum=extNames.length;
 					int runNamesNum=runNames.length;
-					int extendedArrayNum=extendedArray.length;
-					int runnableArrayNum=runnableArray.length;
-				
-					if(extendedArrayNum!=runnableArrayNum || extNamesNum != runNamesNum || extNamesNum!= runnableArrayNum) {
-						throw new Exception ("The no of inputs entered is unequal");
+					
+					if(extNamesNum!=runNamesNum) {
+						throw new CreatedException("The number of names of extended and runnable are not same");
 					}
 					
-					for (int i = 0; i < extendedArrayNum; i++) {
+					for (int i = 0; i < extNamesNum; i++) {
+						
 						System.out.println("Enter the time to sleep for Extended Thread::");
-						long extendTime=getLong.isLong(input);
-						ExtendedThread thread =new ExtendedThread(extNames[i]);
-						thread.setSleepDuration(extendTime);
+						ExtendedThread6 thread =new ExtendedThread6(extNames[i],getLong.isLong(input));
 						extendedArray[i]=thread;
-						System.out.println("Enter the boolean value for extended thread ::");
-						boolean extValue=input.nextBoolean();
-						thread.setValue(extValue);
 						thread.start();
 						
-					}
-					
-					
-					for (int j = 0; j < runnableArrayNum; j++) {
 						System.out.println("Enter the time to sleep for Runnable Thread::");
-						long runTime=getLong.isLong(input);
-						RunnableThread run =new RunnableThread(runNames[j]);
-						run.setSleepDuration(runTime);
-						runnableArray[j]=run;
+						RunnableThread6 run =new RunnableThread6(runNames[i],getLong.isLong(input));
 						Thread t=new Thread(run);
-						System.out.println("Enter the boolean value for extended thread ::");
-						boolean runValue=input.nextBoolean();
-						run.setValue(runValue);
+						runnableArray[i]=run;
 						t.start();
-
 					}
+										
+						for(int i=0;i<extNamesNum;i++) {
+							
+							Thread.currentThread().sleep(60000);
+							extendedArray[i].stopMethod();
+							
+							Thread.currentThread().sleep(60000);
+							runnableArray[i].stopMethod();
+							
+						}
 					
-					System.out.println("Tasks completed");
+					
+				System.out.println("The task is completed");
+					
 				}catch(Exception e) {
-					System.out.println(e);
+					System.err.println(e);
 				}
 				break;
 

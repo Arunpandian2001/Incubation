@@ -1,8 +1,6 @@
 package com.string.runner;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.logging.Logger;
-
 import createdexception.CreatedException;
 import com.string.method.StringMethods;
 import com.util.getvalues.*;
@@ -18,7 +16,8 @@ public class StringRunner {
 		IntegerMethod getIntInput=new IntegerMethod();
 		GetString inputString=new GetString();
 		StringLine inputLine=new StringLine();
-		
+		BooleanMethod boo=new BooleanMethod();
+
 	//	final Logger logger=new Logger("com.string.runner.StringRunner");
 
 		while(value){
