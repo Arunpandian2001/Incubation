@@ -143,7 +143,7 @@ public class DBLoadDriver {
 			}	 
 	}
 	
-	private EmployeePOJO getResultUsingName(ResultSet result) throws CreatedException {
+	private EmployeePOJO getResultUsingName(ResultSet result) throws CreatedException {//returns employeePojo
 		EmployeePOJO pojo=new EmployeePOJO();
 		try {
 			while(result.next()) {
@@ -157,7 +157,7 @@ public class DBLoadDriver {
 		}catch(SQLException e) {
 			throw new CreatedException("Error occured while setting pojo",e);
 		}
-		return pojo; 		
+		return pojo;		
 	}
 	
 	public void modifyTableFields(String query,String idObtained,
