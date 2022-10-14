@@ -8,7 +8,6 @@ public class ExtendedThread1 extends Thread {
 		this.threadName=name;
 	}
 	
-	
 	public void run() {
 		setName(threadName);
 		System.out.println("Running.."+getName());

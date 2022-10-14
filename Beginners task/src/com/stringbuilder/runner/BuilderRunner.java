@@ -2,9 +2,9 @@ package com.stringbuilder.runner;
 import java.util.Scanner;
 
 import com.stringbuilder.method.BuilderMethod;
-import com.util.getvalues.*;
 
 import createdexception.CreatedException;
+import util.getvalues.*;
 
 public class BuilderRunner {
 	

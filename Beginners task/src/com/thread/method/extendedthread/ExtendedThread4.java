@@ -9,7 +9,6 @@ public class ExtendedThread4 extends Thread{
 	public ExtendedThread4(String name,long time) {
 		this.threadName=name;
 		this.time= time;
-
 	}
 	
 	public void run() {

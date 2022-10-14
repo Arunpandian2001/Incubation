@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 import com.thread.method.extendedthread.*;
 import com.thread.method.runnablethread.*;
-import com.util.getvalues.*;
 
 import createdexception.CreatedException;
+import util.getvalues.*;
 public class ThreadRunner {
 
 	public static void main(String[] args)  {
@@ -263,12 +263,12 @@ public class ThreadRunner {
 										
 						for(int i=0;i<extNamesNum;i++) {
 							
-							Thread.currentThread().sleep(60000);
+							Thread.sleep(60000);
+							
 							extendedArray[i].stopMethod();
 							
-							Thread.currentThread().sleep(60000);
+							Thread.sleep(60000);
 							runnableArray[i].stopMethod();
-							
 						}
 					
 					

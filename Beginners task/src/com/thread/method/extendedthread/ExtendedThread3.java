@@ -8,9 +8,7 @@ public class ExtendedThread3 extends Thread{
 	public ExtendedThread3(String name) {
 		this.threadName=name;
 	}
-	
-	
-	
+
 	public void run() {
 		
 			System.out.println("Going to sleep "+ threadName);

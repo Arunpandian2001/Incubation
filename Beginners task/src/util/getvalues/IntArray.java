@@ -1,4 +1,4 @@
-package com.util.getvalues;
+package util.getvalues;
 
 import java.util.Scanner;
 

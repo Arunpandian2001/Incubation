@@ -20,7 +20,7 @@ public class HashMapMethods {
 			throw new CreatedException("The key/value given is inappropriate");
 		}
 	}
-	public <K,V> void mapContainsKey (HashMap<K,V> map,K toFindKey) throws CreatedException{
+	public <K,V> void mapContainsKey (Map<K,V> map,K toFindKey) throws CreatedException{
 		nullCheck(map);
 		nullCheck(toFindKey);
 		if(!map.containsKey(toFindKey)) {
@@ -28,7 +28,7 @@ public class HashMapMethods {
 		}
 	}
 	
-	public <K,V> void mapContainsValue (HashMap<K,V> map,V toFindValue) throws CreatedException{
+	public <K,V> void mapContainsValue (Map<K,V> map,V toFindValue) throws CreatedException{
 		nullCheck(map);
 		nullCheck(toFindValue);
 		if(!map.containsValue(toFindValue)) {
@@ -45,99 +45,100 @@ public class HashMapMethods {
 		nullCheck(numbers);
 		return numbers.length;
 	}
-	public <K,V> HashMap<K,V> getHashMap(K key,V value) {
-		HashMap<K,V> map=new HashMap<>();
+	public <K,V> Map<K, V> getHashMap(K key,V value) {
+		Map<K,V> map=new HashMap<>();
 		return map ;
 	}
 	
-	public <K, V> int  getMapSize(HashMap<K ,V > map)throws CreatedException{
+	public <K, V> int  getMapSize(Map<K ,V > map)throws CreatedException{
 		int size=map.size();
 		return size;
 	}
 	
-	public HashMap<String,String> getStringMap(HashMap<String ,String > map,String[] keys,String[] values)throws CreatedException{
-		int keySize=getStringArrayLength(keys);
-		int valueSize=getStringArrayLength(values);
-		keyValueCheck(keySize,valueSize);
-
-		for(int i=0;i<keySize;i++) {
-			map.put(keys[i], values[i]);
-		}
-		return map;
-	}
-	
-	public HashMap<Integer,Integer> getIntegerMap(HashMap<Integer ,Integer > map,Integer[] keys,Integer[] values)throws CreatedException{
-		int keySize=getIntArrayLength(keys);
-		int valueSize=getIntArrayLength(values);
-		keyValueCheck(keySize,valueSize);
-		for(int i=0;i<keySize;i++) {
-			map.put(keys[i], values[i]);
-		}
-		return map;
-	}
-	
-	public HashMap<String,Integer> getStringIntegerMap(HashMap<String, Integer> map,String[] keys,Integer[] values)throws CreatedException{
-		int keySize=getStringArrayLength(keys);
-		int valueSize=getIntArrayLength(values);
-		keyValueCheck(keySize,valueSize);
-		for(int i=0;i<keySize;i++) {
-			map.put(keys[i], values[i]);
-		}
-		return map;
-	}
-	
-	public HashMap<String,HashMapRunner> getStringObjectMap(HashMap<String,HashMapRunner> map,String[] keys,int count)throws CreatedException {
-		nullCheck(map);		
-		for(int i=0;i<count;i++) {
-			HashMapRunner temp=new HashMapRunner();
-			map.put(keys[i], temp);		}
-		return map;
-	}
-	public HashMap<String,String> getStringNullPointedMap(HashMap<String ,String > map,String[] keys,String[] values)throws CreatedException{
-		int keySize=getStringArrayLength(keys);
-		int valueSize=getStringArrayLength(values);
-		keyValueCheck(keySize,valueSize);
-
-		for(int i=0;i<valueSize;i++) {
-			map.put(keys[i], values[i]);
-		}
-		return map;
-	}
-	
-	public HashMap<String,String> getStringNullKeyMap(HashMap<String ,String > map,String keys,String values)throws CreatedException{
+	public Map<String,String> getStringMap(Map<String ,String > map,String keys,String values)throws CreatedException{
+		nullCheck(map);
+		nullCheck(keys);
 		nullCheck(values);
+
+		map.put(keys, values);
+		
+		return map;
+	}
+	
+	public Map<Integer,Integer> getIntegerMap(Map<Integer ,Integer > map,Integer keys,Integer values)throws CreatedException{
+		nullCheck(map);
+		nullCheck(keys);
+		nullCheck(values);
+
+		
+		map.put(keys, values);
+		
+		return map;
+	}
+	
+	public Map<String,Integer> getStringIntegerMap(Map<String, Integer> map,String keys,Integer values)throws CreatedException{
+
+		nullCheck(map);
+		nullCheck(keys);
+		nullCheck(values);
+
+
+		map.put(keys, values);
+
+		return map;
+	}
+	
+	public Map<String,HashMapRunner> getStringObjectMap(Map<String,HashMapRunner> map,String keys)throws CreatedException {
+		nullCheck(map);
+		nullCheck(keys);
+		
+
+		map.put(keys, new HashMapRunner());		
+		return map;
+	}
+	public Map<String,String> getStringNullPointedMap(Map<String ,String > map,String keys,String values)throws CreatedException{
+		
+		nullCheck(map);
+		
 		map.put(keys, values);
 		return map;
 	}
 	
-	public HashMap<Integer,String> getIntegerStringMap(HashMap<Integer,String> map,Integer[] keys,String[] values)throws CreatedException{
-		int valueSize=getStringArrayLength(values);
-		int keySize=getIntArrayLength(keys);
-		keyValueCheck(keySize,valueSize);
-		for(int i=0;i<keySize;i++) {
-			map.put(keys[i], values[i]);
-		}
+	public Map<String,String> getStringNullKeyMap(Map<String ,String > map,String keys,String values)throws CreatedException{
+		nullCheck(map);
+		nullCheck(keys);
+		nullCheck(values);
+
+		map.put(keys, values);
+		return map;
+	}
+	
+	public Map<Integer,String> getIntegerStringMap(Map<Integer,String> map,Integer keys,String values)throws CreatedException{
+		nullCheck(map);
+		nullCheck(keys);
+		nullCheck(values);
+		
+		map.put(keys, values);
+		
 		return map;
 	}
 		
-	public HashMap<String,String> getReplacedValues(HashMap<String ,String > map,String[] keys,String[] replaceValues)throws CreatedException{
-		int keySize=getStringArrayLength(keys);
-		int valueSize=getStringArrayLength(replaceValues);
-		keyValueCheck(keySize,valueSize);
-
-		for(int i=0;i<valueSize;i++) {
-			map.replace(keys[i], replaceValues[i]);
-		}
+	public Map<String,String> getReplacedValues(Map<String ,String > map,String keys,String replaceValues)throws CreatedException{
+		nullCheck(map);
+		nullCheck(keys);
+		nullCheck(replaceValues);
+		
+		map.replace(keys, replaceValues);
 		return map;
 	}
-	public String getValue(HashMap<Integer,String> map,Integer toFindValue)throws CreatedException{
+	public String getValue(Map<Integer,String> map,Integer toFindValue)throws CreatedException{
 		nullCheck(map);
 		nullCheck(toFindValue);
 		
 		return map.get(toFindValue);
 	}
 	
-	public String getNullValueAsString(HashMap<Integer,String> map,Integer toFindValue,String resultSring)throws CreatedException{
+	public String getNullValueAsString(Map<Integer,String> map,Integer toFindValue,String resultSring)throws CreatedException{
 		nullCheck(map);
 		nullCheck(toFindValue);
 		
@@ -149,14 +150,14 @@ public class HashMapMethods {
 		return map.get(toFindValue);
 	}
 	
-	public String getKeyRemoved(HashMap<Integer,String> map,Integer toRemoveKey)throws CreatedException{
+	public String getKeyRemoved(Map<Integer,String> map,Integer toRemoveKey)throws CreatedException{
 		nullCheck(map);
 		nullCheck(toRemoveKey);
 		
 		return map.remove(toRemoveKey);
 	}
 	
-	public HashMap<Integer,String> getKeyRemovedWithValue(HashMap<Integer,String> map,Integer toRemoveKey,String toRemoveValue)throws CreatedException{
+	public Map<Integer,String> getKeyRemovedWithValue(Map<Integer,String> map,Integer toRemoveKey,String toRemoveValue)throws CreatedException{
 		nullCheck(map);
 		nullCheck(toRemoveKey);
 		nullCheck(toRemoveValue);
@@ -165,7 +166,7 @@ public class HashMapMethods {
 		return map;
 	}
 	
-	public HashMap<Integer,String> getReplacedValue(HashMap<Integer,String> map,Integer toRemoveKey,String toReplaceValue)throws CreatedException{
+	public Map<Integer,String> getReplacedValue(Map<Integer,String> map,Integer toRemoveKey,String toReplaceValue)throws CreatedException{
 		nullCheck(map);
 		nullCheck(toReplaceValue);
 		nullCheck(toRemoveKey);
@@ -174,7 +175,7 @@ public class HashMapMethods {
 		return map;
 	}
 	
-	public HashMap<Integer,String> getReplacedByValue(HashMap<Integer,String> map,Integer toRemoveKey,String toRemoveValue,String toReplaceValue)throws CreatedException{
+	public Map<Integer,String> getReplacedByValue(Map<Integer,String> map,Integer toRemoveKey,String toRemoveValue,String toReplaceValue)throws CreatedException{
 		nullCheck(map);
 		nullCheck(toReplaceValue);////////
 		nullCheck(toRemoveValue);
@@ -184,7 +185,7 @@ public class HashMapMethods {
 		return map;
 	}
 	
-	public HashMap<Integer,String> getAddedHashMap(HashMap<Integer,String> map1,HashMap<Integer,String> map2)throws CreatedException{
+	public Map<Integer,String> getAddedHashMap(Map<Integer,String> map1,Map<Integer,String> map2)throws CreatedException{
 		nullCheck(map1);
 		nullCheck(map2);
 
@@ -192,13 +193,13 @@ public class HashMapMethods {
 		map2.putAll(map1);
 		return map2;
 	}
-	public void printKeyValue (HashMap<Integer,String> map) throws CreatedException{
+	public void printKeyValue (Map<Integer,String> map) throws CreatedException{
 		nullCheck(map);
 		for(Map.Entry<Integer,String> entry : map.entrySet()) {
 			System.out.println("Key= "+entry.getKey()+" Value = "+entry.getValue());
 		}
 	}	
-	public HashMap<Integer,String> getClearedMap(HashMap<Integer,String> map)throws CreatedException{
+	public Map<Integer,String> getClearedMap(Map<Integer,String> map)throws CreatedException{
 		nullCheck(map);
 		map.clear();
 		return map;

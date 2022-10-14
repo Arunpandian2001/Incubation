@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import createdexception.CreatedException;
 
-public class NullException {
+public class NullCheck {
 
 	public void nullCheck(Object name)throws CreatedException{
 		//object as parameter for string type and can be used for sting array and array list also

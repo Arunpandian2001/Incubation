@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.arraylist.methods.ArrayListMethod2;
-import com.util.getvalues.*;
 
 import createdexception.CreatedException;
+import util.getvalues.*;
 
 public class ArrayListRunner {
 

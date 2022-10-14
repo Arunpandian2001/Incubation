@@ -2,8 +2,9 @@ package com.string.runner;
 import java.util.Arrays;
 import java.util.Scanner;
 import createdexception.CreatedException;
+import util.getvalues.*;
+
 import com.string.method.StringMethods;
-import com.util.getvalues.*;
 
 public class StringRunner {
 

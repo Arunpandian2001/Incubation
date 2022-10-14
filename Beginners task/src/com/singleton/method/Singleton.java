@@ -1,4 +1,4 @@
-package com.singleton.runner;
+package com.singleton.method;
 
 public enum Singleton {
 

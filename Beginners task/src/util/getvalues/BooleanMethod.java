@@ -1,12 +1,11 @@
-package com.util.getvalues;
+package util.getvalues;
 
 import java.util.Scanner;
 
 public class BooleanMethod {
 	boolean value;
-	private Scanner input=new Scanner(System.in);
 
-	public boolean isBoolean() {
+	public boolean isBoolean(Scanner input) {
 		boolean loop=true;
 		while(loop) {
 			if(input.hasNextBoolean()) {
@@ -18,7 +17,6 @@ public class BooleanMethod {
 				input.next();
 			}
 		}
-		input.close();
 		return value;
 	}
 }

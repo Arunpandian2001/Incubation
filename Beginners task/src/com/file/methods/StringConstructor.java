@@ -1,11 +1,11 @@
 package com.file.methods;
 
 public class StringConstructor {
-		String Str;
+		String str;
 		public StringConstructor(String word) {
-			this.Str=word;
+			this.str=word;
 		}
 		public String toString() {
-			return Str ;
+			return str ;
 		}
 }

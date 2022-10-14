@@ -1,16 +1,18 @@
 package com.hashmap.runner;
 import createdexception.CreatedException;
+import util.getvalues.*;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.hashmap.methods.HashMapMethods;
-import com.util.getvalues.*;
 
 public class HashMapRunner {
 	
 	
 	public static void main(String[] args) throws CreatedException  {
+		
 		Scanner input=new Scanner(System.in);
 		IntegerMethod getInt=new IntegerMethod();
 		HashMapMethods method=new HashMapMethods ();
@@ -18,15 +20,15 @@ public class HashMapRunner {
 		StringArray inputArray=new StringArray();
 		IntegerObjectArray intObjArray=new IntegerObjectArray();
 		GetString inputString=new GetString();
+		
 		boolean value=true;
-		SanityCheck sanity=new SanityCheck();
 		while(value) {
 			System.out.println("Enter the choice::");
 			int choice=getInt.isInteger(input);
 			switch(choice) {
 			
 				case 1:{
-					HashMap<Integer,Integer> map=method.getHashMap(1,1);
+					Map<Integer, Integer> map=method.getHashMap(1,1);
 					try {
 						System.out.println("The map is ::"+map);
 						System.out.println("The size of map is::"+method.getMapSize(map));
@@ -38,13 +40,17 @@ public class HashMapRunner {
 				}
 				
 				case 2:{
-					HashMap<String,String> map=method.getHashMap("","");
+					Map<String, String> map=method.getHashMap("","");
 					try {
 						System.out.println("Keys");
 						String[] keys=inputArray.getStringArray(input);
 						System.out.println("Values");
 						String[] values=inputArray.getStringArray(input);
-						map=method.getStringMap(map,keys,values);
+						
+						for(int i=0;i<keys.length;i++) {
+							map=method.getStringMap(map,keys[i],values[i]);
+
+						}
 						System.out.println("The map is ::"+map);
 						System.out.println("The size of map is::"+method.getMapSize(map));
 					}catch(CreatedException e) {
@@ -55,13 +61,16 @@ public class HashMapRunner {
 				}
 				
 				case 3:{
-					HashMap<Integer,Integer> map=method.getHashMap(1,1);
+					Map<Integer,Integer> map=method.getHashMap(1,1);
 					try {
 						System.out.println("Keys");
 						Integer[] keys=intObjArray.getIntArray(input);
 						System.out.println("Values");
 						Integer[] values=intObjArray.getIntArray(input);
-						map=method.getIntegerMap(map,keys,values);
+						for(int i=0;i<keys.length;i++) {
+							
+							map=method.getIntegerMap(map,keys[i],values[i]);
+						}
 						System.out.println("The map is ::"+map);
 						System.out.println("The size of map is::"+method.getMapSize(map));
 					}catch(CreatedException e) {
@@ -71,13 +80,16 @@ public class HashMapRunner {
 					break;
 				}
 				case 4:{
-					HashMap<String,Integer> map=method.getHashMap("",1);
+					Map<String,Integer> map=method.getHashMap("",1);
 					try {
 						System.out.println("Values");
 						Integer[] values=intObjArray.getIntArray(input);
 						System.out.println("Keys");
 						String[] keys=inputArray.getStringArray(input);
-						map=method.getStringIntegerMap(map,keys,values);
+						for(int i=0;i<keys.length;i++) {
+							
+							map=method.getStringIntegerMap(map,keys[i],values[i]);
+						}
 						System.out.println("The map is ::"+map);
 						System.out.println("The size of map is::"+method.getMapSize(map));
 					}catch(CreatedException e) {
@@ -87,14 +99,17 @@ public class HashMapRunner {
 					break;
 				}
 				case 5:{
-					HashMap<String,HashMapRunner> map=method.getHashMap("",runner);
+					Map<String,HashMapRunner> map=method.getHashMap("",runner);
 					try {
 						System.out.println("Keys");
 						String[] keys=inputArray.getStringArray(input);
 						System.out.println("Values");
 						System.out.println("Enter the number of objects to be created::");
 						int count=getInt.isInteger(input);
-						map=method.getStringObjectMap(map,keys,count);
+						for(int i=0;i<count;i++) {
+							map=method.getStringObjectMap(map,keys[i]);
+
+						}
 						System.out.println("The map is ::"+map);
 						System.out.println("The size of map is::"+method.getMapSize(map));
 					}catch(CreatedException e) {
@@ -105,13 +120,16 @@ public class HashMapRunner {
 				}
 				
 				case 6:{
-					HashMap<String,String> map=method.getHashMap("","");
+					Map<String,String> map=method.getHashMap("","");
 					try {
 						System.out.println("Keys");
 						String[] keys=inputArray.getStringArray(input);
 						System.out.println("Values");
 						String[] values=inputArray.getStringArray(input);
-						map=method.getStringNullPointedMap(map,keys,values);
+						for(int i=0;i<keys.length;i++) {
+							map=method.getStringNullPointedMap(map,keys[i],values[i]);
+
+						}
 						System.out.println("The map is ::"+map);
 						System.out.println("The size of map is::"+method.getMapSize(map));
 					}catch(CreatedException e) {
@@ -122,7 +140,7 @@ public class HashMapRunner {
 				}
 				
 				case 7:{
-					HashMap<String,String> map=method.getHashMap("","");
+					Map<String,String> map=method.getHashMap("","");
 					try {
 						String key=null;
 						System.out.println("Value");
@@ -138,13 +156,16 @@ public class HashMapRunner {
 				}
 				
 				case 8:{
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try {
 							System.out.println("Values");
 							Integer[] keys=intObjArray.getIntArray(input);
 							System.out.println("Keys");
 							String[] values=inputArray.getStringArray(input);
-							map=method.getIntegerStringMap(map,keys,values);
+							for(int i=0;i<keys.length;i++) {
+								map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+							}
 							System.out.println("The size of map is::"+method.getMapSize(map));
 							System.out.println("Enter the key to search");
 							Integer toFindKey=new Integer(getInt.isInteger(input));
@@ -162,13 +183,16 @@ public class HashMapRunner {
 				}
 				
 				case 9:{
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try {
 						System.out.println("Values");
 						Integer[] keys=intObjArray.getIntArray(input);
 						System.out.println("Keys");
 						String[] values=inputArray.getStringArray(input);
-						map=method.getIntegerStringMap(map,keys,values);
+						for(int i=0;i<keys.length;i++) {
+							map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+						}
 						System.out.println("The size of map is::"+method.getMapSize(map));
 						System.out.println("Enter the key to search");
 						String toFindValue=inputString.getString(input);
@@ -185,18 +209,25 @@ public class HashMapRunner {
 				}
 				
 				case 10:{
-					HashMap<String,String> map=method.getHashMap("","");
+					Map<String,String> map=method.getHashMap("","");
 					try {
 						System.out.println("Keys");
 						String[] keys=inputArray.getStringArray(input);
 						System.out.println("Values");
 						String[] values=inputArray.getStringArray(input);
-						map=method.getStringMap(map,keys,values);
+						
+						for(int i=0;i<keys.length;i++) {
+							map=method.getStringMap(map,keys[i],values[i]);
+
+						}
 						System.out.println("The map is ::"+map);
 						System.out.println("The size of map is::"+method.getMapSize(map));
 						System.out.println("Enter the values to be replaced ");
 						String[] replaceValues=inputArray.getStringArray(input);
-						map=method.getReplacedValues(map,keys,replaceValues);
+						for(int i=0;i<keys.length;i++) {
+							map=method.getReplacedValues(map,keys[i],replaceValues[i]);
+
+						}
 						System.out.println("The map is ::"+map);
 						System.out.println("The size of map is::"+method.getMapSize(map));
 						
@@ -209,13 +240,16 @@ public class HashMapRunner {
 				}
 				
 				case 11:{
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try {
 						System.out.println("Values");
 						Integer[] keys=intObjArray.getIntArray(input);
 						System.out.println("Keys");
 						String[] values=inputArray.getStringArray(input);
-						map=method.getIntegerStringMap(map,keys,values);
+						for(int i=0;i<keys.length;i++) {
+							map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+						}
 						System.out.println("The size of map is::"+method.getMapSize(map));
 						System.out.println("Enter the key to get value");
 						Integer toFindValue=new Integer(getInt.isInteger(input));
@@ -232,13 +266,16 @@ public class HashMapRunner {
 				}
 				
 				case 12:{
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try {
 						System.out.println("Values");
 						Integer[] keys=intObjArray.getIntArray(input);
 						System.out.println("Keys");
 						String[] values=inputArray.getStringArray(input);
-						map=method.getIntegerStringMap(map,keys,values);
+						for(int i=0;i<keys.length;i++) {
+							map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+						}
 						System.out.println("The size of map is::"+method.getMapSize(map));
 						System.out.println("Enter the key to get value");
 						Integer toFindValue=new Integer(getInt.isInteger(input));
@@ -254,13 +291,16 @@ public class HashMapRunner {
 				}
 				
 				case 13:{
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try {
 						System.out.println("Values");
 						Integer[] keys=intObjArray.getIntArray(input);
 						System.out.println("Keys");
 						String[] values=inputArray.getStringArray(input);
-						map=method.getIntegerStringMap(map,keys,values);
+						for(int i=0;i<keys.length;i++) {
+							map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+						}
 						System.out.println("The size of map is::"+method.getMapSize(map));
 						System.out.println("Enter the key to get value");
 						Integer toFindValue=new Integer(getInt.isInteger(input));
@@ -278,13 +318,16 @@ public class HashMapRunner {
 				}
 				
 				case 14:{
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try {
 							System.out.println("Values");
 							Integer[] keys=intObjArray.getIntArray(input);
 							System.out.println("Keys");
 							String[] values=inputArray.getStringArray(input);
-							map=method.getIntegerStringMap(map,keys,values);
+							for(int i=0;i<keys.length;i++) {
+								map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+							}
 							System.out.println("The size of map is::"+method.getMapSize(map));
 							System.out.println("Enter the key to remove value");
 							Integer toRemoveKey=new Integer(getInt.isInteger(input));
@@ -303,13 +346,16 @@ public class HashMapRunner {
 				}
 				
 				case 15:{
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try {
 						System.out.println("Values");
 						Integer[] keys=intObjArray.getIntArray(input);
 						System.out.println("Keys");
 						String[] values=inputArray.getStringArray(input);
-						map=method.getIntegerStringMap(map,keys,values);
+						for(int i=0;i<keys.length;i++) {
+							map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+						}						
 						System.out.println("The size of map is::"+method.getMapSize(map));
 						System.out.println("Enter the key to remove value");
 						Integer toRemoveKey=new Integer(getInt.isInteger(input));
@@ -330,13 +376,16 @@ public class HashMapRunner {
 				
 				case 16:{
 					
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try {
 							System.out.println("Values");
 							Integer[] keys=intObjArray.getIntArray(input);
 							System.out.println("Keys");
 							String[] values=inputArray.getStringArray(input);
-							map=method.getIntegerStringMap(map,keys,values);
+							for(int i=0;i<keys.length;i++) {
+								map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+							}					
 							System.out.println("The size of map is::"+method.getMapSize(map));
 							System.out.println("Enter the key to remove value");
 							Integer toRemoveKey=new Integer(getInt.isInteger(input));
@@ -357,13 +406,16 @@ public class HashMapRunner {
 				}
 				
 				case 17:{
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try {
 							System.out.println("Values");
 							Integer[] keys=intObjArray.getIntArray(input);
 							System.out.println("Keys");
 							String[] values=inputArray.getStringArray(input);
-							map=method.getIntegerStringMap(map,keys,values);
+							for(int i=0;i<keys.length;i++) {
+								map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+							}						
 							System.out.println("The size of map is::"+method.getMapSize(map));
 							System.out.println("Enter the key to remove value");
 							Integer toRemoveKey=new Integer(getInt.isInteger(input));
@@ -388,15 +440,18 @@ public class HashMapRunner {
 				}
 				
 				case 18:{
-					HashMap<Integer,String> map1=method.getHashMap(1,"");
-					HashMap<Integer,String> map2=method.getHashMap(1,"");
+					Map<Integer,String> map1=method.getHashMap(1,"");
+					Map<Integer,String> map2=method.getHashMap(1,"");
 
 					try {
 							System.out.println("Values");
 							Integer[] keys1=intObjArray.getIntArray(input);
 							System.out.println("Keys");
 							String[] values1=inputArray.getStringArray(input);
-							map1=method.getIntegerStringMap(map1, keys1, values1);
+							for(int i=0;i<keys1.length;i++) {
+								map1=method.getIntegerStringMap(map1,keys1[i],values1[i]);
+
+							}						
 							System.out.println("The size of map 1 is::"+method.getMapSize(map1));
 							System.out.println("The size of map 2 is::"+method.getMapSize(map2));
 							map2=method.getAddedHashMap(map1,map2);
@@ -412,13 +467,16 @@ public class HashMapRunner {
 					break;
 				}
 				case 19:{
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try{
 							System.out.println("Values");
 							Integer[] keys=intObjArray.getIntArray(input);
 							System.out.println("Keys");
 							String[] values=inputArray.getStringArray(input);
-							map=method.getIntegerStringMap(map, keys, values);
+							for(int i=0;i<keys.length;i++) {
+								map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+							}						
 							method.printKeyValue(map);
 					}catch(CreatedException e) {
 						System.out.println(e);
@@ -428,13 +486,16 @@ public class HashMapRunner {
 				}
 				
 				case 20:{
-					HashMap<Integer,String> map=method.getHashMap(1,"");
+					Map<Integer,String> map=method.getHashMap(1,"");
 					try{
 						System.out.println("Values");
 						Integer[] keys=intObjArray.getIntArray(input);
 						System.out.println("Keys");
 						String[] values=inputArray.getStringArray(input);
-						map=method.getIntegerStringMap(map, keys, values);
+						for(int i=0;i<keys.length;i++) {
+							map=method.getIntegerStringMap(map,keys[i],values[i]);
+
+						}						
 						System.out.println("The map present is::"+map);
 						System.out.println("The size of map is::"+method.getMapSize(map));
 						map=method.getClearedMap(map);

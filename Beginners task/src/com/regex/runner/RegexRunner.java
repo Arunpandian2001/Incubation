@@ -1,18 +1,17 @@
 package com.regex.runner;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import com.arraylist.methods.ArrayListMethod2;
 import com.hashmap.methods.HashMapMethods;
 import com.regex.method.RegexMethod;
-import com.util.getvalues.GetString;
-import com.util.getvalues.IntegerMethod;
-import com.util.getvalues.StringArray;
-import com.util.getvalues.StringLine;
 
 import createdexception.CreatedException;
+import util.getvalues.GetString;
+import util.getvalues.IntegerMethod;
+import util.getvalues.StringArray;
 
 public class RegexRunner {
 
@@ -25,7 +24,6 @@ public class RegexRunner {
 		ArrayListMethod2 listMethod=new ArrayListMethod2();
 		HashMapMethods mapMethod=new HashMapMethods();
 		StringArray stringArr=new StringArray();
-		StringLine multipleString=new StringLine();
 		boolean value=true;
 		
 		while(value) {
@@ -70,9 +68,9 @@ public class RegexRunner {
 				}
 				
 				case 3:{
-					System.out.println("Enter the String");
+					System.out.println("Enter the Matcher String");
 					String matcherString=inputString.getString(input);
-					System.out.println("Enter the string to compare given cases ");
+					System.out.println("Enter the Pattern string to compare ");
 					final String REGEX=inputString.getString(input);
 					System.out.println("\n\n");
 					
@@ -188,7 +186,7 @@ public class RegexRunner {
 				case 7:{
 					List<String> list1=listMethod.getArrayList("");
 					List<String> list2=listMethod.getArrayList("");
-					HashMap<String,Integer> map=mapMethod.getHashMap("",1);
+					Map<String, Integer> map=mapMethod.getHashMap("",1);
 					
 					
 					input.nextLine();

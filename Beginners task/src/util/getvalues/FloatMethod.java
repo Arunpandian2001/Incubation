@@ -1,10 +1,9 @@
-package com.util.getvalues;
+package util.getvalues;
 
 import java.util.Scanner;
 
 public class FloatMethod {
-	private Scanner input=new Scanner(System.in);
-	public float isFloat() {
+	public float isFloat(Scanner input) {
 		boolean loop=true;
 		float number=0;
 		while(loop) {
@@ -17,8 +16,7 @@ public class FloatMethod {
 				input.next();
 			}
 		}
-		input.close();
+			
 		return number;
 	}
 }
- 

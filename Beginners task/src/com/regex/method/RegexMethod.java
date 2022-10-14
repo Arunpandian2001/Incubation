@@ -1,36 +1,32 @@
 package com.regex.method;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.arraylist.methods.ArrayListMethod2;
 import com.hashmap.methods.HashMapMethods;
-import com.util.exceptions.NullException;
+import com.util.exceptions.NullCheck;
 
 import createdexception.CreatedException;
 
 public class RegexMethod {
 	
-	NullException isNull=new NullException();
+	NullCheck isNull=new NullCheck();
 	ArrayListMethod2 listMethod=new ArrayListMethod2();
 	HashMapMethods mapMethod=new HashMapMethods();
 
 	public boolean isMobileNumber(String mobileNumber) throws CreatedException {
 		isNull.nullCheck(mobileNumber);
-		if(Pattern.matches("[789]{1}[\\d]{9}", mobileNumber)) {
-			return true;
-		}
-		return false;
+		
+		return (Pattern.matches("[789]{1}[\\d]{9}", mobileNumber));
 	}
 	
 	public boolean isAlphaNumeric(String alphaNumeric) throws CreatedException {
 		isNull.nullCheck(alphaNumeric);
-		if(alphaNumeric.matches("^[\\w_]+$")) {
-			return true;
-		}
-		return false;
+		
+		return (alphaNumeric.matches("^[\\w]+ [^_]$"));
 	}
 	
 	public boolean isStartString(String REGEX,String matcherString) throws CreatedException {
@@ -54,12 +50,11 @@ public class RegexMethod {
 		
 		return Pattern.compile(REGEX+"$").matcher(matcherString).find();
 	}
-	
 	public boolean isMatchingsString(String REGEX,String matcherString) throws CreatedException {
 		isNull.nullCheck(matcherString);
 		isNull.nullCheck(REGEX);
 		
-		return Pattern.compile(REGEX).matcher(matcherString).find();
+		return Pattern.compile(REGEX).matcher(matcherString).matches();
 	}
 	
 	public boolean isMatchingIgnoringCases(List<String> list,String REGEX,String matcherString) throws CreatedException {
@@ -81,7 +76,7 @@ public class RegexMethod {
 		return Pattern.matches("^\\w{1,6}$", matcherString);
 	}
 	
-	public HashMap<String,Integer> getCommonStringMap(List<String> list1,List<String> list2,HashMap<String,Integer> map) throws CreatedException{
+	public Map<String,Integer> getCommonStringMap(List<String> list1,List<String> list2,Map<String,Integer> map) throws CreatedException{
 		isNull.nullCheck(map);
 		
 		int sizeOfList1=listMethod.getSize(list1);
@@ -95,16 +90,13 @@ public class RegexMethod {
 			}
 		}
 		return map;
-		
-		
-		
 	}
 	
 	public List<String>  getHTMLTags(String htmlString,List<String> tagList) throws CreatedException{
 		isNull.nullCheck(htmlString);
 		isNull.nullCheck(tagList);
 		
-		Pattern pattern=Pattern.compile("</*[a-zA-Z]*>");
+		Pattern pattern=Pattern.compile("</?[a-zA-Z]*>");
 		
 		Matcher match=pattern.matcher(htmlString);
 		

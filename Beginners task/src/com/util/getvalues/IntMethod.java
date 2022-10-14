@@ -1,10 +1,12 @@
 package com.util.getvalues;
+
 import java.util.Scanner;
 
-
-public class IntegerMethod {
+public class IntMethod {
 	
-	public int isInteger(Scanner input) {
+	private Scanner input=new Scanner(System.in);
+	
+	public int isInteger() {
 		boolean loop=true;
 		int number=0;
 		while(loop) {
@@ -17,6 +19,8 @@ public class IntegerMethod {
 				input.next();
 			}
 		}
+		input.close();
 		return number;
 	}
+
 }
